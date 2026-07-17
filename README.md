@@ -96,3 +96,4 @@ dotnet run
 
 \*\*Джуртубаєв Арсен\*\*, група 611п, ХАІ
 
+Cloned copy — synced via `git pull`.
