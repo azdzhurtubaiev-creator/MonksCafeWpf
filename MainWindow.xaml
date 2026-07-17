@@ -1,0 +1,98 @@
+﻿<Window x:Class="MonksCafeWpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Monk's Cafe" Height="600" Width="900"
+        Background="#1E1E1E" FontFamily="Segoe UI" FontSize="14">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#FF8C00"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#EEEEEE"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="#EEEEEE"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="🍔 Monk's Cafe"
+                   FontSize="28" FontWeight="Bold" Foreground="#FF8C00"
+                   Margin="0,0,0,15"/>
+
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <TextBlock Text="Меню" FontSize="16" FontWeight="Bold" Margin="5,0,0,5"/>
+            <Button Content="1. Add Item" Click="BtnAddItem_Click"/>
+            <Button Content="2. Remove Item" Click="BtnRemoveItem_Click"/>
+            <Button Content="3. Add Tip" Click="BtnAddTip_Click"/>
+            <Button Content="4. Display Bill" Click="BtnDisplayBill_Click"/>
+            <Button Content="5. Clear All" Click="BtnClear_Click"/>
+            <Button Content="6. Save to File" Click="BtnSave_Click"/>
+            <Button Content="7. Load from File" Click="BtnLoad_Click"/>
+            <Button Content="8. Exit" Click="BtnExit_Click" Background="#8B0000"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1" Grid.Column="1" Margin="15,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Позиції рахунку" FontSize="16" FontWeight="Bold" Margin="0,0,0,5"/>
+            <DataGrid Grid.Row="1" Name="ItemsGrid" AutoGenerateColumns="False"
+                      Background="#2D2D2D" Foreground="White" BorderBrush="#444"
+                      RowBackground="#2D2D2D" AlternatingRowBackground="#333"
+                      GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#444"
+                      HeadersVisibility="Column" CanUserAddRows="False"
+                      CanUserDeleteRows="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Опис" Binding="{Binding Description}" Width="*"/>
+                    <DataGridTextColumn Header="Ціна" Binding="{Binding Price, StringFormat=F2}" Width="120"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <Border Grid.Row="2" Grid.ColumnSpan="2" Background="#2D2D2D"
+                CornerRadius="5" Padding="15" Margin="0,15,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Net Total" Foreground="#AAA"/>
+                    <TextBlock Name="LblNet" Text="0.00" FontSize="20" FontWeight="Bold" Foreground="White"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="Tip" Foreground="#AAA"/>
+                    <TextBlock Name="LblTip" Text="0.00" FontSize="20" FontWeight="Bold" Foreground="White"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2">
+                    <TextBlock Text="GST (5%)" Foreground="#AAA"/>
+                    <TextBlock Name="LblGst" Text="0.00" FontSize="20" FontWeight="Bold" Foreground="White"/>
+                </StackPanel>
+                <StackPanel Grid.Column="3">
+                    <TextBlock Text="TOTAL" Foreground="#FF8C00"/>
+                    <TextBlock Name="LblTotal" Text="0.00" FontSize="24" FontWeight="Bold" Foreground="#FF8C00"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
